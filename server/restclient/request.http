@@ -1,0 +1,16 @@
+@API = http://localhost:4000/api
+
+### get all deals
+GET {{API}}/deals?q=
+
+### get deals (partial match and case insensitive + salePrice filter )
+GET {{API}}/deals?q=title : half,salePrice < 2.50,salePrice > 1.98
+
+### get deals (exact match and case sensitive + salePrice filter)
+GET {{API}}/deals?q=title = Half-Life,salePrice < 2.50,salePrice > 1.98
+
+### get deals (without operators)
+GET {{API}}/deals?q=half
+
+### get deals (invalid filter)
+GET {{API}}/deals?q=title > 50,salePrice < 2.50,salePrice > 1.98

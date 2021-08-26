@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  api:
+    container_name: api
+    restart: always
+    build: ./server
+    volumes:
+      - ./server:/usr/src/app
+  app:
+    container_name: app
+    restart: always
+    build: ./client
+    depends_on:
+      - api
+    volumes:
+      - ./client:/usr/src/app
+  nginx:
+    container_name: nginx
+    restart: always
+    build: ./nginx
+    ports:
+      - '80:80'
+    depends_on:
+      - api
+      - app
